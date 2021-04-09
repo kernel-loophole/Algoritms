@@ -1,19 +1,20 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        if divisor==0:
+        if divisor==0 :
             return None
-        if divisor==1:
-            if divisor<0 and dividend<0:
-                return dividend
-            elif dividend<0 or divisor<0:
-                return dividend*-1
-            return dividend
         if abs(divisor)==abs(dividend):
             if dividend<0 and divisor<0:
                 return 1
             if dividend<0 or divisor<0:
                 return -1
             return 1
+        if abs(divisor)==1:
+            if divisor<0 and dividend<0:
+                return abs(dividend)
+            elif dividend<0 or divisor<0:
+                return dividend*-1
+            return dividend
+       
         tmp_div=abs(dividend)
         count_mins=0
         flag=False
@@ -32,4 +33,6 @@ class Solution:
          return int(count_mins)*-1
        
         return int(count_mins)
-    
+if __name__=="__main__":
+    s=Solution()
+    print(s.divide(-2147483648,-1))
