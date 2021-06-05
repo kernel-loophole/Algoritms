@@ -1,3 +1,4 @@
+import numpy as np
 class Solution:
     def searchInsert(self, nums: list[int], target: int) -> int:
         check=False
@@ -10,6 +11,8 @@ class Solution:
                 if nums[i]>target:
                     return i
         return len(nums)
+    
+
 if __name__=="__main__":
     s=Solution()
     print(s.searchInsert([1,3,5,6],7))            
