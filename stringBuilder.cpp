@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
+//Bool fun
 bool checkUnique(string str)
 {
 	for (int i=0; i<str.length();i++)
