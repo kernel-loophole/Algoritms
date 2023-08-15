@@ -134,9 +134,3 @@ class beam_search:
             print(self.path[i].name)
         print("Path cost:")
         print(self.path_cost)
-
-
-
-
-
-        

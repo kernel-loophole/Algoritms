@@ -27,4 +27,3 @@ string test="This";
 
 return 0;
 }
-
