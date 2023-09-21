@@ -1,3 +1,4 @@
+# max len palindrome in string
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         list_of_palindrome=[]
