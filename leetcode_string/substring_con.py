@@ -1,25 +1,41 @@
+from collections import Counter
 class Solution:
     def findSubstring(self, s: str, words: list[str]) -> list[int]:
-        word_total_legth=len(words[0])
-        word_i_lengt=len(words)
-        Target_String=""
-        for string in words:
-            Target_String+=string
-        # print(Target_String+Target_String)
-        indexies=[]
-        Target_String+=Target_String
-        final_len=word_total_legth*word_i_lengt
-        # if final_len>=len(s):
-        #     return []
-        for i in range(0,len(s)):
-            try:
-                #print("Target string {0} and cal string {1}".format(Target_String,s[i:final_len]))
-                if s[i:final_len+i] in Target_String and len(s[i:final_len+i])==final_len:
-                    print(s[i:final_len+i])
+        if not s or not words:
+            return []
 
-            except:
-                pass    
+        word_len = len(words[0])
+        total_len = word_len * len(words)
+        word_count = Counter(words)
+        result = []
 
-if __name__=="__main__":
-    s=Solution()
-    print(s.findSubstring("foobar",['foo','bar']))
+        for i in range(word_len):
+            left = i
+            sub_count = Counter()
+            count = 0
+
+            for j in range(i, len(s) - word_len + 1, word_len):
+                word = s[j:j + word_len]
+
+                if word in word_count:
+                    sub_count[word] += 1
+                    count += 1
+
+                    while sub_count[word] > word_count[word]:
+                        left_word = s[left:left + word_len]
+                        sub_count[left_word] -= 1
+                        count -= 1
+                        left += word_len
+
+                    if count == len(words):
+                        result.append(left)
+                        left_word = s[left:left + word_len]
+                        sub_count[left_word] -= 1
+                        count -= 1
+                        left += word_len
+                else:
+                    sub_count.clear()
+                    count = 0
+                    left = j + word_len
+
+        return result
